@@ -4,9 +4,10 @@ import { Header } from '../components/header';
 
 export const metadata = {
     title: {
-        template: '%s | Netlify',
-        default: 'Netlify Starter'
-    }
+        template: '%s | Hifza',
+        default: 'Hifza - UX/UI & Graphic Designer'
+    },
+    description: 'Portfolio of Hifza - UX/UI Designer, Graphic Designer, and Creative Storyteller'
 };
 
 export default function RootLayout({ children }) {
