@@ -2,6 +2,11 @@
 const nextConfig = {
   reactCompiler: true,
   
+  // permit remote placeholder images used in AboutSection
+  images: {
+    domains: ['via.placeholder.com'],
+  },
+
   redirects() {
     return [
       {

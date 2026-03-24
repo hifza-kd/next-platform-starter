@@ -17,16 +17,30 @@
 }
 
 @layer base {
+    body {
+        font-family: var(--font-noto-sans);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-alan-sans);
+        font-weight: 700;
+    }
+
     h1 {
-        @apply text-4xl font-bold tracking-tight sm:text-5xl;
+        @apply text-4xl tracking-tight sm:text-5xl;
     }
 
     h2 {
-        @apply text-2xl font-bold sm:text-3xl;
+        @apply text-2xl sm:text-3xl;
     }
 
     h3 {
-        @apply text-xl font-bold;
+        @apply text-xl;
     }
 
     a:not(.btn) {
@@ -155,3 +169,9 @@
         }
     }
 }
+
+/* ensure anchored sections are not hidden behind fixed header */
+html {
+    scroll-padding-top: 5rem;
+}
+

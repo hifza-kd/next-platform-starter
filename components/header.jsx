@@ -1,68 +1,53 @@
 import Link from "next/link";
-import Image from "next/image";
-import githubLogo from "public/images/github-mark-white.svg";
 
 const navItems = [
   { linkText: "Home", href: "/" },
   { linkText: "My Work", href: "/work" },
   { linkText: "Portfolio", href: "/#skills" },
-  { linkText: "About", href: "/#experience" },
+  { linkText: "About", href: "/about" },
   { linkText: "UX/UI", href: "/ux" },
 ];
 
 export function Header() {
   return (
-    <header
-      className="w-full h-[50px] bg-white text-black flex items-center"
-      style={{
-        boxShadow: "0 2px 12px rgba(0,0,0,0.05)", // very light feathered shadow
-      }}
-    >
-      <div className="h-full w-full flex items-center px-6">
-  
-  {/* LEFT: Brand */}
-  <div className="flex items-center">
-    <Link href="/" className="text-lg font-bold no-underline text-black">
-      Hifza
-    </Link>
-  </div>
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm">
+      <div className="max-w-6xl mx-auto flex items-center py-4 px-6">
+        {/* brand */}
+        <Link href="/" className="text-xl font-bold uppercase tracking-wide no-underline text-black">
+          Hifza
+        </Link>
 
-  {/* CENTER: Navigation */}
-  <nav className="hidden md:flex items-center gap-8 ml-8">
-    <Link href="/" className="text-sm text-black/70 hover:text-black no-underline">
-      Home
-    </Link>
-    <Link href="/work" className="text-sm text-black/70 hover:text-black no-underline">
-      My Work
-    </Link>
-    <Link href="/#skills" className="text-sm text-black/70 hover:text-black no-underline">
-      Portfolio
-    </Link>
-    <Link href="/#experience" className="text-sm text-black/70 hover:text-black no-underline">
-      About
-    </Link>
-    <Link href="/ux" className="text-sm text-black/70 hover:text-black no-underline">
-      UX/UI
-    </Link>
-  </nav>
+        {/* nav links and action buttons */}
+        <div className="ml-auto flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm uppercase text-black/70 hover:text-black no-underline"
+              >
+                {item.linkText}
+              </Link>
+            ))}
+          </nav>
 
-  {/* RIGHT: CTA */}
-  <div className="ml-auto">
-    <Link
-      href="/#contact"
-      className="
-        inline-flex items-center justify-center
-        h-9 px-5 rounded-full
-        text-sm font-semibold
-        bg-[#047AE4] text-white
-        no-underline
-        hover:opacity-95
-      "
-    >
-      Let&apos;s talk
-    </Link>
-  </div>
-
-</div>
-
-        </header>)}
+          {/* action buttons */}
+          <Link
+            href="/#contact"
+            className="inline-block text-sm font-semibold py-2 px-4 rounded-full bg-[#047AE4] text-white no-underline hover:opacity-95"
+          >
+            Contact
+          </Link>
+          <Link
+            href="https://drive.google.com/file/d/12sa4jSTahflnR5lw-pvMd7VORZPvIgHI/view?usp=sharing"
+            className="inline-block text-sm font-semibold py-2 px-4 rounded-full bg-[#047AE4] text-white no-underline hover:opacity-95"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Resume
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
