@@ -1,6 +1,19 @@
+import { Noto_Sans, Alan_Sans } from 'next/font/google';
 import '../styles/globals.css';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
+
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-noto-sans',
+});
+
+const alanSans = Alan_Sans({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-alan-sans',
+});
 
 export const metadata = {
   title: {
@@ -13,7 +26,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${notoSans.variable} ${alanSans.variable}`}>
       <head>
         <link rel="icon" href="/favicon.svg" sizes="any" />
       </head>
@@ -23,7 +36,7 @@ export default function RootLayout({ children }) {
           <Header />
 
           {/* FULL WIDTH main (backgrounds can still be full-bleed) */}
-          <main className="flex-1 w-full">
+          <main className="flex-1 w-full pt-20">
             {/* GLOBAL content margin/width */}
             <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
               {children}
