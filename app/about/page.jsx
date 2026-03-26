@@ -1,331 +1,234 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { AboutSection } from '../../components/AboutSection';
 
 export const metadata = {
     title: 'About Hifza | Graphic Designer & Brand Identity Specialist'
 };
 
-const topSkills = [
-    'Brand Identity Design',
-    'Graphic Design',
-    'UI Design',
-    'Logo Design',
-    'Concept Art',
-    'Advertising Design',
-    'Video Editing',
-    'WordPress Design',
-    'Motion Design',
-    'Social Media Design'
-];
-
-const softwareTools = [
-    'Adobe Illustrator',
-    'Figma',
-    'Canva',
-    'Adobe Photoshop',
-    'Adobe InDesign',
-];
-
-const services = [
-    'Brand Identity Design',
-    'Logo Design',
-    'User Interface Design',
-    'Short Form Video Editing',
-    'LinkedIn Carousels',
-    'WordPress Backend Customization',
-];
+const aboutMedia = {
+    type: 'image',
+    src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
+    poster: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
+    alt: 'Placeholder hero media for the About page'
+};
 
 const experiences = [
     {
         company: 'DANK Studio',
         position: 'Graphic Designer',
         duration: 'June 2024 - Present',
-        location: 'Pakistan',
-        description: 'Creating innovative visual identities and design solutions for diverse client base.',
-        highlights: []
+        timeframe: '2024 - Present',
+        meta: 'Brand identity, graphic design, motion design',
+        accent: '#9ad05d'
     },
     {
         company: 'BarqRaftar Technologies Pvt (Ltd.)',
         position: 'Graphic Design Intern',
         duration: 'November 2023 - December 2023',
-        location: 'Pakistan',
-        description: 'Collaborated with lead designer on brand strategy and visual identity development.',
-        highlights: [
-            'Contributed to cohesive brand strategy development',
-            'Engaged in brand meetings with strategic insights',
-            'Applied motion design techniques for digital presence',
-            'Managed tasks using project management tools',
-            'Learned 3D visual creation and ideation'
-        ]
+        timeframe: '2023 - 2023',
+        meta: 'Brand strategy, visual identity, motion support',
+        accent: '#f4b183'
     },
     {
         company: 'DANK Studios',
         position: 'Graphic Design Intern',
         duration: 'July 2023 - September 2023',
-        location: 'Pakistan',
-        description: 'Led brand identity creation and designed cohesive, user-friendly website.',
-        highlights: [
-            'Led creation of Dank Studios\' brand identity',
-            'Focused on strategic brand development',
-            'Designed cohesive, user-friendly website',
-            'Enhanced communication and client collaboration skills'
-        ]
+        timeframe: '2023 - 2023',
+        meta: 'Brand building, website design, collaboration',
+        accent: '#7dd3fc'
     },
     {
         company: 'TecHayal',
         position: 'Business Development Intern',
         duration: 'November 2021 - December 2021',
-        location: 'Lahore, Punjab, Pakistan',
-        description: 'Managed graphic design resources and social media strategy.',
-        highlights: [
-            'Managed graphic design resources during projects',
-            'Drafted creative ideas and developed mood boards',
-            'Leveraged freelance experience in social media management',
-            'Balanced design with digital marketing responsibilities'
-        ]
+        timeframe: '2021 - 2021',
+        meta: 'Moodboards, social strategy, creative support',
+        accent: '#f87171'
     },
     {
         company: 'The Chae Club',
         position: 'Brand Identity Designer',
         duration: 'September 2021',
-        location: 'Sindh, Pakistan',
-        description: 'Designed culturally-inspired brand identity targeting Sindhi youth.',
-        highlights: [
-            'Conducted thorough research on Sindhi culture',
-            'Designed custom logo for target demographic',
-            'Demonstrated cultural sensitivity and authenticity'
-        ]
+        timeframe: '2021',
+        meta: 'Research-led brand identity, cultural storytelling',
+        accent: '#c4b5fd'
     },
     {
         company: 'PrettyTings',
         position: 'Brand Identity Designer',
         duration: 'July 2021',
-        location: 'Lahore, Pakistan',
-        description: 'Created modern brand aesthetic for minimalistic jewelry brand.',
-        highlights: [
-            'Conducted market research on target audience',
-            'Analyzed competitor positioning',
-            'Designed custom thank-you card with hand-written aesthetic'
-        ]
+        timeframe: '2021',
+        meta: 'Brand strategy, packaging, visual direction',
+        accent: '#fdba74'
     },
     {
         company: 'Rabt Media',
         position: 'Content Writer',
         duration: 'October 2018 - August 2019',
-        location: 'Pakistan',
-        description: 'Produced engaging content for digital platforms.',
-        highlights: []
+        timeframe: '2018 - 2019',
+        meta: 'Content writing, messaging, digital communication',
+        accent: '#fcd34d'
     }
+];
+
+const skills = [
+    'Brand Identity Design',
+    'Graphic Design',
+    'UI Design',
+    'Logo Design',
+    'Motion Design',
+    'Social Media Design',
+    'Adobe Illustrator',
+    'Figma'
 ];
 
 export default function Page() {
     return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            {/* about / "hello" style section */}
-            <AboutSection />
-
-            {/* Hero Section */}
-            <section className="flex flex-col sm:flex-row gap-8 sm:gap-12 items-start sm:items-center">
-                {/* Profile Picture */}
-                <div className="flex-shrink-0 w-48 h-48 sm:w-56 sm:h-56">
-                    <div className="relative w-full h-full rounded-lg overflow-hidden ring-2 ring-primary">
-                        <Image
-                            src="/images/profile-picture.jpeg"
-                            alt="Hifza Khalid - Graphic Designer"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                </div>
-
-                {/* Introduction & Contact */}
-                <div className="flex flex-col gap-6 flex-1">
-                    <div>
-                        <h1 className="mb-1">Hifza Khalid</h1>
-                        <p className="text-xl text-primary font-semibold mb-4">Graphic Designer</p>
-                        <p className="text-gray-300 mb-2">Lahore, Punjab, Pakistan</p>
+        <main className="min-h-screen bg-[#f8f6f1] text-[#011627]">
+            <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-10 px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
+                <section className="space-y-6">
+                    <div className="flex items-end gap-2">
+                        <h1 className="text-5xl leading-none tracking-tight text-[#011627] sm:text-6xl lg:text-7xl">
+                            About Me
+                        </h1>
                     </div>
 
-                    <div className="text-gray-300">
-                        <p className="mb-4 leading-relaxed">
-                            I am a graphic designer based in Pakistan. I aim to make thoughtful designs that bring the client's vision into reality. I describe myself as reliable and dedicated.
-                        </p>
-                    </div>
-
-                    {/* Contact Info */}
-                    <div className="flex flex-col gap-3 text-sm">
-                        <div className="flex items-center gap-2">
-                            <span className="text-primary">📱</span>
-                            <a href="tel:+923312300732" className="hover:text-primary transition">
-                                +92 331 2300732
-                            </a>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="text-primary">✉️</span>
-                            <a href="mailto:hifza.kd@gmail.com" className="hover:text-primary transition">
-                                hifza.kd@gmail.com
-                            </a>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="text-primary">💼</span>
-                            <a href="https://www.linkedin.com/in/hifzakd" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">
-                                LinkedIn
-                            </a>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="text-primary">🎨</span>
-                            <a href="https://bento.me/hifzakhalid" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">
-                                Portfolio Website
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <div className="pt-2">
-                        <a href="mailto:hifza.kd@gmail.com" className="btn btn-lg inline-block">
-                            Let's Work Together ☕
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            {/* Services Section */}
-            <section className="flex flex-col gap-6">
-                <h2>Services I Provide</h2>
-                <div className="grid sm:grid-cols-2 gap-4">
-                    {services.map((service) => (
-                        <div
-                            key={service}
-                            className="p-4 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 hover:border-primary/40 transition-all"
-                        >
-                            <p className="font-semibold text-gray-100">✨ {service}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Top Skills Section */}
-            <section className="flex flex-col gap-6">
-                <h2>Top Skills</h2>
-                <div className="flex flex-wrap gap-3">
-                    {topSkills.map((skill) => (
-                        <div
-                            key={skill}
-                            className="px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 text-gray-100 font-medium hover:border-primary/60 hover:from-primary/30 hover:to-secondary/30 transition-all"
-                        >
-                            {skill}
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Software Tools Section */}
-            <section className="flex flex-col gap-6">
-                <h2>Software I Use</h2>
-                <div className="grid sm:grid-cols-2 gap-3">
-                    {softwareTools.map((tool) => (
-                        <div
-                            key={tool}
-                            className="px-4 py-3 rounded-lg bg-neutral-800 border border-neutral-700 text-gray-100 hover:border-primary/40 transition-all flex items-center gap-2"
-                        >
-                            <span className="text-primary">⚙️</span>
-                            {tool}
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Languages Section */}
-            <section className="flex flex-col gap-6">
-                <h2>Languages</h2>
-                <div className="flex flex-wrap gap-3">
-                    <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20">
-                        <p className="font-semibold text-gray-100">English</p>
-                        <p className="text-sm text-gray-400">Full Professional Proficiency</p>
-                    </div>
-                    <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20">
-                        <p className="font-semibold text-gray-100">Urdu</p>
-                        <p className="text-sm text-gray-400">Native</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Experience Section */}
-            <section className="flex flex-col gap-6">
-                <h2>Professional Experience</h2>
-                <div className="flex flex-col gap-6">
-                    {experiences.map((exp, index) => (
-                        <div
-                            key={index}
-                            className="border-l-4 border-primary pl-6 py-2 hover:border-secondary transition-colors"
-                        >
-                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-100">{exp.position}</h3>
-                                    <p className="text-primary font-medium">{exp.company}</p>
-                                </div>
-                                <p className="text-sm text-gray-400 whitespace-nowrap">{exp.duration}</p>
-                            </div>
-                            <p className="text-sm text-gray-400 mb-3">{exp.location}</p>
-                            <p className="text-gray-300 mb-3">{exp.description}</p>
-                            {exp.highlights.length > 0 && (
-                                <ul className="text-gray-400 text-sm space-y-1 ml-4">
-                                    {exp.highlights.map((highlight, idx) => (
-                                        <li key={idx} className="list-disc">
-                                            {highlight}
-                                        </li>
-                                    ))}
-                                </ul>
+                    <div className="overflow-hidden rounded-[1.6rem] border border-[#011627]/10 bg-white shadow-[0_18px_70px_rgba(1,22,39,0.12)]">
+                        <div className="relative aspect-[16/9] w-full bg-black">
+                            {aboutMedia.type === 'video' ? (
+                                <video
+                                    src={aboutMedia.src}
+                                    poster={aboutMedia.poster}
+                                    controls
+                                    className="h-full w-full object-cover"
+                                />
+                            ) : (
+                                <Image
+                                    src={aboutMedia.poster}
+                                    alt={aboutMedia.alt}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
                             )}
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 text-sm text-white/78 sm:p-5">
+                                <div className="rounded-full border border-white/14 bg-black/35 px-3 py-1.5 backdrop-blur">
+                                    Video placeholder ready
+                                </div>
+                                <div className="rounded-full border border-white/14 bg-black/35 px-3 py-1.5 backdrop-blur">
+                                    Replace with your intro reel later
+                                </div>
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Education Section */}
-            <section className="flex flex-col gap-6">
-                <h2>Education</h2>
-                <div className="border-l-4 border-secondary pl-6 py-2">
-                    <h3 className="text-lg font-semibold mb-1 text-gray-100">Bachelor of Fine Arts (BFA)</h3>
-                    <p className="text-primary font-medium mb-2">Design and Visual Communications</p>
-                    <p className="text-gray-400">University of the Punjab, Lahore</p>
-                    <p className="text-gray-400 text-sm mt-2">2022 - 2025</p>
-                </div>
-            </section>
-
-            {/* Interests Section */}
-            <section className="flex flex-col gap-6">
-                <h2>When I'm Not Designing</h2>
-                <div className="grid sm:grid-cols-3 gap-4">
-                    <div className="p-4 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
-                        <p className="text-center text-gray-100">📚 Reading</p>
                     </div>
-                    <div className="p-4 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
-                        <p className="text-center text-gray-100">🍽️ Searching for the next food place to visit</p>
-                    </div>
-                    <div className="p-4 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
-                        <p className="text-center text-gray-100">💭 Overthinking</p>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            {/* CTA Section */}
-            <section id="contact" className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-lg p-8 text-center">
-                <h2 className="mb-4">Let's Connect & Collaborate</h2>
-                <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                    I am always available to discuss things and excited to talk about design. Leave a message and let's connect! ☕
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="mailto:hifza.kd@gmail.com" className="btn btn-lg">
-                        Send Me a Message
-                    </a>
-                    <a href="https://bento.me/hifzakhalid" target="_blank" rel="noopener noreferrer" className="btn btn-lg" style={{ backgroundColor: 'var(--color-secondary)' }}>
-                        View Full Portfolio
-                    </a>
-                </div>
-            </section>
-        </div>
+                <section className="grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:gap-10">
+                    <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-3 shadow-[0_12px_40px_rgba(1,22,39,0.06)] sm:p-4">
+                        <div className="space-y-2">
+                            {experiences.map((exp) => (
+                                <article
+                                    key={`${exp.company}-${exp.position}`}
+                                    className="grid items-center gap-4 rounded-[1.1rem] border border-transparent px-3 py-3 transition-colors hover:border-[#011627]/8 hover:bg-[#011627]/[0.02] sm:grid-cols-[minmax(0,1fr)_auto] sm:px-4"
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <span
+                                            className="mt-1 h-10 w-10 flex-shrink-0 rounded-xl border border-[#011627]/10"
+                                            style={{ backgroundColor: exp.accent }}
+                                        />
+                                        <div className="min-w-0">
+                                            <h2 className="text-base font-semibold text-[#011627] sm:text-lg">
+                                                {exp.company}
+                                            </h2>
+                                            <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[#011627]/58 sm:text-xs">
+                                                {exp.position}
+                                            </p>
+                                            <p className="mt-1 text-sm text-[#011627]/58">{exp.meta}</p>
+                                        </div>
+                                    </div>
+                                    <div className="justify-self-start sm:justify-self-end">
+                                        <span className="inline-flex rounded-full border border-[#011627]/10 px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em] text-[#011627]/62">
+                                            {exp.timeframe}
+                                        </span>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+
+                    <aside className="space-y-4">
+                        <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-6 shadow-[0_12px_40px_rgba(1,22,39,0.06)]">
+                            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#011627]/45">Intro</p>
+                            <p className="mt-4 text-lg leading-8 text-[#011627]/82">
+                                I&apos;m Hifza Khalid, a graphic designer based in Lahore, Pakistan. I build thoughtful visual systems, websites,
+                                and brand experiences that feel clear, strategic, and human.
+                            </p>
+                            <p className="mt-4 text-sm leading-7 text-[#011627]/58">
+                                Reliable, collaborative, and curious. I enjoy turning research, ideas, and messy concepts into visuals people can
+                                immediately connect with.
+                            </p>
+                        </div>
+
+                        <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-6 shadow-[0_12px_40px_rgba(1,22,39,0.06)]">
+                            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#011627]/45">Education</p>
+                            <div className="mt-4 space-y-2">
+                                <h3 className="text-lg font-semibold text-[#011627]">Bachelor of Fine Arts (BFA)</h3>
+                                <p className="text-sm text-[#011627]/68">Design and Visual Communications</p>
+                                <p className="text-sm text-[#011627]/58">University of the Punjab, Lahore</p>
+                                <p className="text-sm text-[#011627]/45">2022 - 2025</p>
+                            </div>
+                        </div>
+
+                        <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-6 shadow-[0_12px_40px_rgba(1,22,39,0.06)]">
+                            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#011627]/45">Selected Skills</p>
+                            <div className="mt-4 flex flex-wrap gap-2.5">
+                                {skills.map((skill) => (
+                                    <span
+                                        key={skill}
+                                        className="rounded-full border border-[#011627]/10 px-3 py-1.5 text-sm text-[#011627]/72"
+                                    >
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-6 shadow-[0_12px_40px_rgba(1,22,39,0.06)]">
+                            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#011627]/45">Contact</p>
+                            <div className="mt-4 space-y-4 text-sm text-[#011627]/68">
+                                <p>Lahore, Punjab, Pakistan</p>
+                                <a
+                                    href="mailto:hifzakhalid03@gmail.com"
+                                    className="flex items-center gap-3 no-underline transition-opacity hover:opacity-75"
+                                >
+                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#011627] text-white">
+                                        @
+                                    </span>
+                                    <span>hifzakhalid03@gmail.com</span>
+                                </a>
+                                <a href="tel:+923312300732" className="block no-underline transition-opacity hover:opacity-75">
+                                    +92 331 2300732
+                                </a>
+                                <Link
+                                    href="https://www.linkedin.com/in/hifzakd"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-3 no-underline transition-opacity hover:opacity-75"
+                                >
+                                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0a66c2] text-white">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A1.96 1.96 0 0 0 3.3 4.97c0 1.08.86 1.96 1.92 1.96h.03A1.96 1.96 0 1 0 5.25 3ZM20.44 12.73c0-3.48-1.86-5.1-4.34-5.1-2 0-2.89 1.1-3.39 1.87V8.5H9.33c.05.66 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.89-1.39 1.93-1.39 1.36 0 1.9 1.04 1.9 2.56V20H20V13.4c0-.35.44-.67.44-.67Z" />
+                                        </svg>
+                                    </span>
+                                    <span>LinkedIn</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </aside>
+                </section>
+            </div>
+        </main>
     );
 }

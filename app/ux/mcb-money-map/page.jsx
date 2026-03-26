@@ -43,10 +43,6 @@ export default function Page() {
             <span className="h-2.5 w-2.5 rounded-full bg-black" />
             <h1 className="text-lg font-semibold">MCB Money Map</h1>
           </div>
-
-          <Link href="/ux" className="text-sm font-medium hover:underline">
-            Back to UX
-          </Link>
         </div>
       </header>
 

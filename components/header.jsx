@@ -3,15 +3,13 @@ import Link from "next/link";
 const navItems = [
   { linkText: "Home", href: "/" },
   { linkText: "My Work", href: "/work" },
-  { linkText: "Portfolio", href: "/#skills" },
   { linkText: "About", href: "/about" },
-  { linkText: "UX/UI", href: "/ux" },
 ];
 
 export function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto flex items-center py-4 px-6">
+      <div className="flex w-full items-center px-6 py-4 sm:px-10 lg:px-14">
         {/* brand */}
         <Link href="/" className="text-xl font-bold uppercase tracking-wide no-underline text-black">
           Hifza

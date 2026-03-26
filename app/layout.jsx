@@ -1,27 +1,22 @@
-import { Noto_Sans, Alan_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import '../styles/globals.css';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 
-const notoSans = Noto_Sans({
-  subsets: ['latin'],
-  weight: ['400'],
+const notoSans = localFont({
+  src: '../public/fonts/Noto_Sans/static/NotoSans-Regular.ttf',
   variable: '--font-noto-sans',
+  display: 'swap',
 });
 
-const alanSans = Alan_Sans({
-  subsets: ['latin'],
-  weight: ['700'],
+const alanSans = localFont({
+  src: '../public/fonts/Alan_Sans/static/AlanSans-Bold.ttf',
   variable: '--font-alan-sans',
+  display: 'swap',
 });
 
 export const metadata = {
-  title: {
-    template: '%s | Hifza',
-    default: 'Hifza - UX/UI & Graphic Designer',
-  },
-  description:
-    'Portfolio of Hifza - UX/UI Designer, Graphic Designer, and Creative Storyteller',
+  title: 'Hifza Khalid | Graphic Designer & Brand Identity Specialist',
 };
 
 export default function RootLayout({ children }) {
@@ -35,12 +30,8 @@ export default function RootLayout({ children }) {
         <div className="flex flex-col min-h-screen w-full">
           <Header />
 
-          {/* FULL WIDTH main (backgrounds can still be full-bleed) */}
           <main className="flex-1 w-full pt-20">
-            {/* GLOBAL content margin/width */}
-            <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
-              {children}
-            </div>
+            {children}
           </main>
 
           <Footer />

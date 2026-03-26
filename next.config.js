@@ -4,7 +4,16 @@ const nextConfig = {
   
   // permit remote placeholder images used in AboutSection
   images: {
-    domains: ['via.placeholder.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
 
   redirects() {
