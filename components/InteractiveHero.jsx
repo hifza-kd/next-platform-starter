@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { HeroScene } from './HeroScene';
 
 export function InteractiveHero() {
     const heroRef = useRef(null);
@@ -53,19 +54,24 @@ export function InteractiveHero() {
                 }}
             />
 
-            <div className="relative page-shell flex min-h-[calc(100vh-5rem)] items-center justify-center py-16 text-center">
+            <div className="relative flex min-h-[calc(100vh-5rem)] w-full items-center px-6 py-12 sm:px-10 sm:py-16 lg:px-16 xl:px-20">
                 <section
                     className={`hero-section w-full transition-all duration-700 ${isVisible ? 'animate translate-y-0 scale-100 opacity-100' : 'translate-y-12 scale-95 opacity-0'}`}
                 >
-                    <h1 className="headline text-4xl sm:text-6xl font-bold">
-                        I design websites that attract the right clients before you say a single word.
-                    </h1>
-                    <p className="subtext mx-auto max-w-2xl text-lg sm:text-xl text-[#011627]">
-                        Custom portfolio websites for service providers, built around who you are, not just what you do. Brand-first. No templates. No nonsense.
-                    </p>
-                    <button className="cta mt-6 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-600">
-                        See How It Works
-                    </button>
+                    <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+                        <div className="order-2 lg:order-1">
+                            <HeroScene />
+                        </div>
+
+                        <div className="order-1 text-left lg:order-2">
+                            <h1 className="headline max-w-[11ch] text-4xl font-bold sm:text-5xl lg:text-6xl">
+                                I design websites that attract the right clients before you say a single word.
+                            </h1>
+                            <button className="cta mt-6 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-600">
+                                See How It Works
+                            </button>
+                        </div>
+                    </div>
                 </section>
             </div>
         </section>

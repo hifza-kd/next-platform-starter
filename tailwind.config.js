@@ -5,3 +5,13 @@ export default {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
 };
+// @filename tailwind.config.js
+module.exports = {
+	theme: {
+		// ...
+	},
+	plugins: [
+		require("tailwindcss-animate"),
+		// ...
+	],
+}

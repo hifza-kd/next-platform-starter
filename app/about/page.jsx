@@ -15,59 +15,50 @@ const aboutMedia = {
 const experiences = [
     {
         company: 'DANK Studio',
-        position: 'Graphic Designer',
-        duration: 'June 2024 - Present',
+        position: 'Creative Content Manager',
+        duration: '2024 - Current',
         timeframe: '2024 - Present',
-        meta: 'Brand identity, graphic design, motion design',
-        accent: '#9ad05d'
+        meta: 'Creative & visual production, short-form video editing, content operations',
+        accent: '#9ad05d',
+        details: [
+            'Designed visuals aligned with brand guidelines, including website banners, carousels, blog infographics, and supporting imagery.',
+            'Executed strategic brand development and built a UX/UI-friendly website. Designed a cohesive Brand Guidelines Document for future use.',
+            'Edited short-form video content using CapCut, optimised for social platforms.',
+            'Ensured visual hooks, pacing, and on-screen text aligned with SEO and social search behaviour.',
+            'Managed end-to-end content publishing in WordPress, including formatting, scheduling, and quality checks against an editorial timetable.',
+            'Implemented light HTML edits within WordPress using vibe coding to refine layouts, embeds, internal links, and on-page structure.'
+        ]
+    },
+    {
+        company: 'BFA Thesis Project',
+        position: 'Financial Education App Design',
+        duration: 'Jul - Oct 2025',
+        timeframe: '2025',
+        meta: 'Research, UX strategy, prototyping, testing, campaign design',
+        accent: '#7dd3fc',
+        details: [
+            'Executed research and design of a financial literacy platform addressing gaps in digital financial education in Pakistan.',
+            'Developed user personas, empathy maps, and audience-specific design strategies.',
+            'Prototyped a mobile app in Figma, progressing from low-fidelity sketches to high-fidelity interactive wireframes.',
+            'Executed user testing for refining UX/UI based on feedback.',
+            'Designed marketing material including posters, brochures, standees, and social media assets.',
+            'Secured 30 early sign-ups during public panel launch testing and validated product-market interest.'
+        ]
     },
     {
         company: 'BarqRaftar Technologies Pvt (Ltd.)',
         position: 'Graphic Design Intern',
-        duration: 'November 2023 - December 2023',
+        duration: 'Nov - Dec 2023',
         timeframe: '2023 - 2023',
         meta: 'Brand strategy, visual identity, motion support',
-        accent: '#f4b183'
-    },
-    {
-        company: 'DANK Studios',
-        position: 'Graphic Design Intern',
-        duration: 'July 2023 - September 2023',
-        timeframe: '2023 - 2023',
-        meta: 'Brand building, website design, collaboration',
-        accent: '#7dd3fc'
-    },
-    {
-        company: 'TecHayal',
-        position: 'Business Development Intern',
-        duration: 'November 2021 - December 2021',
-        timeframe: '2021 - 2021',
-        meta: 'Moodboards, social strategy, creative support',
-        accent: '#f87171'
-    },
-    {
-        company: 'The Chae Club',
-        position: 'Brand Identity Designer',
-        duration: 'September 2021',
-        timeframe: '2021',
-        meta: 'Research-led brand identity, cultural storytelling',
-        accent: '#c4b5fd'
-    },
-    {
-        company: 'PrettyTings',
-        position: 'Brand Identity Designer',
-        duration: 'July 2021',
-        timeframe: '2021',
-        meta: 'Brand strategy, packaging, visual direction',
-        accent: '#fdba74'
-    },
-    {
-        company: 'Rabt Media',
-        position: 'Content Writer',
-        duration: 'October 2018 - August 2019',
-        timeframe: '2018 - 2019',
-        meta: 'Content writing, messaging, digital communication',
-        accent: '#fcd34d'
+        accent: '#f4b183',
+        details: [
+            'Collaborated with the Lead Designer, understanding the company’s branding needs.',
+            'Contributed to the development of a cohesive brand strategy via ideation and execution.',
+            'Engaged in brand meetings, offering insights and ideas to drive the visual identity forward.',
+            'Employed motion design techniques to enhance digital presence.',
+            'Managed tasks using project management tools such as Trello to keep the team updated.'
+        ]
     }
 ];
 
@@ -129,31 +120,49 @@ export default function Page() {
                     <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-3 shadow-[0_12px_40px_rgba(1,22,39,0.06)] sm:p-4">
                         <div className="space-y-2">
                             {experiences.map((exp) => (
-                                <article
+                                <details
                                     key={`${exp.company}-${exp.position}`}
-                                    className="grid items-center gap-4 rounded-[1.1rem] border border-transparent px-3 py-3 transition-colors hover:border-[#011627]/8 hover:bg-[#011627]/[0.02] sm:grid-cols-[minmax(0,1fr)_auto] sm:px-4"
+                                    className="group rounded-[1.1rem] border border-transparent px-3 py-3 transition-colors hover:border-[#011627]/8 hover:bg-[#011627]/[0.02] open:border-[#011627]/10 open:bg-[#011627]/[0.02] sm:px-4"
                                 >
-                                    <div className="flex items-start gap-4">
-                                        <span
-                                            className="mt-1 h-10 w-10 flex-shrink-0 rounded-xl border border-[#011627]/10"
-                                            style={{ backgroundColor: exp.accent }}
-                                        />
-                                        <div className="min-w-0">
-                                            <h2 className="text-base font-semibold text-[#011627] sm:text-lg">
-                                                {exp.company}
-                                            </h2>
-                                            <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[#011627]/58 sm:text-xs">
-                                                {exp.position}
-                                            </p>
-                                            <p className="mt-1 text-sm text-[#011627]/58">{exp.meta}</p>
+                                    <summary className="grid cursor-pointer list-none items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto]">
+                                        <div className="flex items-start gap-4">
+                                            <span
+                                                className="mt-1 h-10 w-10 flex-shrink-0 rounded-xl border border-[#011627]/10"
+                                                style={{ backgroundColor: exp.accent }}
+                                            />
+                                            <div className="min-w-0">
+                                                <h2 className="text-base font-semibold text-[#011627] sm:text-lg">
+                                                    {exp.company}
+                                                </h2>
+                                                <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[#011627]/58 sm:text-xs">
+                                                    {exp.position}
+                                                </p>
+                                                <p className="mt-1 text-sm text-[#011627]/58">{exp.meta}</p>
+                                            </div>
                                         </div>
+                                        <div className="flex items-center gap-3 justify-self-start sm:justify-self-end">
+                                            <span className="inline-flex rounded-full border border-[#011627]/10 px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em] text-[#011627]/62">
+                                                {exp.timeframe}
+                                            </span>
+                                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#011627]/10 text-[#011627]/70 transition-transform group-open:rotate-180">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </summary>
+                                    <div className="ml-14 mt-4 border-l border-[#011627]/10 pl-5">
+                                        <p className="mb-3 text-sm font-medium text-[#011627]/70">{exp.duration}</p>
+                                        <ul className="space-y-2 text-sm leading-7 text-[#011627]/72">
+                                            {exp.details.map((detail) => (
+                                                <li key={detail} className="relative pl-4">
+                                                    <span className="absolute left-0 top-[0.72rem] h-1.5 w-1.5 rounded-full bg-[#011627]/35" />
+                                                    {detail}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
-                                    <div className="justify-self-start sm:justify-self-end">
-                                        <span className="inline-flex rounded-full border border-[#011627]/10 px-3 py-1 text-[0.68rem] uppercase tracking-[0.18em] text-[#011627]/62">
-                                            {exp.timeframe}
-                                        </span>
-                                    </div>
-                                </article>
+                                </details>
                             ))}
                         </div>
                     </div>
