@@ -198,7 +198,6 @@ export default function Page() {
                         <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-6 shadow-[0_12px_40px_rgba(1,22,39,0.06)]">
                             <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#011627]/45">Contact</p>
                             <div className="mt-4 space-y-4 text-sm text-[#011627]/68">
-                                <p>Lahore, Punjab, Pakistan</p>
                                 <a
                                     href="mailto:hifzakhalid03@gmail.com"
                                     className="flex items-center gap-3 no-underline transition-opacity hover:opacity-75"
@@ -207,9 +206,6 @@ export default function Page() {
                                         @
                                     </span>
                                     <span>hifzakhalid03@gmail.com</span>
-                                </a>
-                                <a href="tel:+923312300732" className="block no-underline transition-opacity hover:opacity-75">
-                                    +92 331 2300732
                                 </a>
                                 <Link
                                     href="https://www.linkedin.com/in/hifzakd"
