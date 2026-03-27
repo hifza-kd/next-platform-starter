@@ -66,7 +66,7 @@ const interactiveLayers = [
     }
 ];
 
-export function HeroScene() {
+export function HeroScene({ forcedActive = false }) {
     const [activeLayer, setActiveLayer] = useState(null);
 
     return (
@@ -131,7 +131,7 @@ export function HeroScene() {
                 ))}
 
                 {interactiveLayers.map((layer) => {
-                    const isActive = activeLayer === layer.id;
+                    const isActive = forcedActive || activeLayer === layer.id;
 
                     return (
                         <g
