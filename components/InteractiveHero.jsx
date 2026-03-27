@@ -58,13 +58,13 @@ export function InteractiveHero() {
                 <section
                     className={`hero-section w-full transition-all duration-700 ${isVisible ? 'animate translate-y-0 scale-100 opacity-100' : 'translate-y-12 scale-95 opacity-0'}`}
                 >
-                    <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-                        <div className="order-2 lg:order-1">
+                    <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:grid-cols-[1fr_1fr]">
+                        <div className="order-2 lg:order-1 lg:-ml-8 xl:-ml-12">
                             <HeroScene />
                         </div>
 
-                        <div className="order-1 text-left lg:order-2">
-                            <h1 className="headline max-w-[11ch] text-4xl font-bold sm:text-5xl lg:text-6xl">
+                        <div className="order-1 pl-[200px] text-left lg:order-2 lg:justify-self-start lg:-ml-10">
+                            <h1 className="headline max-w-[10.5ch] text-5xl font-bold sm:text-6xl lg:text-[4.35rem] xl:text-[4.65rem]">
                                 I design websites that attract the right clients before you say a single word.
                             </h1>
                             <button className="cta mt-6 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-600">
