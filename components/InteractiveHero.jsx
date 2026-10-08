@@ -115,7 +115,7 @@ export function InteractiveHero() {
 
                         <div className="order-1 mx-auto w-full max-w-[22rem] px-4 text-center sm:max-w-[28rem] lg:order-2 lg:mx-0 lg:max-w-none lg:justify-self-start lg:-ml-10 lg:px-0 lg:pl-[200px] lg:text-left">
                             <h1 className="headline mx-auto max-w-[12ch] text-5xl font-bold sm:max-w-[13ch] sm:text-6xl lg:mx-0 lg:max-w-[10.5ch] lg:text-[4.35rem] xl:text-[4.65rem]">
-                                I design websites that attract the right clients before you say a single word.
+                                Hello
                             </h1>
                             <button className="cta mt-6 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-600">
                                 See How It Works
