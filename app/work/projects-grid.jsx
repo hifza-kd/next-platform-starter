@@ -3,16 +3,65 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowGlyph, RollText } from '../../components/ArrowLink';
+import { Reveal } from '../../components/Reveal';
+
+// Tilt the card towards the cursor and move the spotlight with it (mouse only).
+function handleTilt(event) {
+    if (event.pointerType && event.pointerType !== 'mouse') {
+        return;
+    }
+
+    const card = event.currentTarget;
+    const bounds = card.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+    card.style.setProperty('--rx', `${(-y * 8).toFixed(2)}deg`);
+    card.style.setProperty('--ry', `${(x * 10).toFixed(2)}deg`);
+    card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+    card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+}
+
+function resetTilt(event) {
+    const card = event.currentTarget;
+
+    card.style.setProperty('--rx', '0deg');
+    card.style.setProperty('--ry', '0deg');
+}
 
 export function ProjectsGrid({ projectsData }) {
     const [selectedProject, setSelectedProject] = useState(null);
     const [hoveredProjectId, setHoveredProjectId] = useState(null);
+    const [activeCategory, setActiveCategory] = useState('All');
+
+    const categories = ['All', ...new Set(projectsData.map((project) => project.category))];
+    const visibleProjects =
+        activeCategory === 'All' ? projectsData : projectsData.filter((project) => project.category === activeCategory);
 
     return (
         <>
             <section className="flex flex-col gap-8">
+                <div className="flex flex-wrap justify-center gap-2.5" role="group" aria-label="Filter projects by category">
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            type="button"
+                            aria-pressed={activeCategory === category}
+                            onClick={() => setActiveCategory(category)}
+                            className={`roll-host rounded-full border px-5 py-2 text-sm transition-all duration-300 hover:-translate-y-0.5 ${
+                                activeCategory === category
+                                    ? 'border-[#011627] bg-[#011627] text-white'
+                                    : 'border-[#011627]/15 text-[#011627]/70 hover:border-[#047AE4] hover:text-[#047AE4]'
+                            }`}
+                        >
+                            <RollText>{category}</RollText>
+                        </button>
+                    ))}
+                </div>
+
                 <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
-                    {projectsData.map((project) => {
+                    {visibleProjects.map((project, position) => {
                         const isHovered = hoveredProjectId === project.id;
                         const CardTag = project.href ? Link : 'button';
                         const cardProps = project.href
@@ -23,14 +72,16 @@ export function ProjectsGrid({ projectsData }) {
                               };
 
                         return (
+                            <Reveal key={project.id} delay={(position % 3) * 110}>
                             <CardTag
-                                key={project.id}
                                 {...cardProps}
                                 onMouseEnter={() => setHoveredProjectId(project.id)}
                                 onMouseLeave={() => setHoveredProjectId(null)}
                                 onFocus={() => setHoveredProjectId(project.id)}
                                 onBlur={() => setHoveredProjectId(null)}
-                                className="group relative overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] text-left shadow-[0_18px_45px_rgba(0,0,0,0.18)] transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.22,1.15)] hover:-translate-y-2 hover:scale-[1.015] hover:shadow-[0_34px_72px_rgba(0,0,0,0.3)] focus-visible:-translate-y-2 focus-visible:scale-[1.015] focus-visible:shadow-[0_34px_72px_rgba(0,0,0,0.3)]"
+                                onPointerMove={handleTilt}
+                                onPointerLeave={resetTilt}
+                                className="tilt-card roll-host group relative block w-full overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] text-left no-underline shadow-[0_18px_45px_rgba(0,0,0,0.18)] hover:opacity-100 hover:shadow-[0_34px_72px_rgba(0,0,0,0.3)] focus-visible:shadow-[0_34px_72px_rgba(0,0,0,0.3)]"
                             >
                                 <div
                                     className="relative aspect-[4/4.6] overflow-hidden rounded-[1.75rem]"
@@ -74,15 +125,36 @@ export function ProjectsGrid({ projectsData }) {
                                     </div>
 
                                     <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
-                                        <h3 className="max-w-[18ch] text-[1rem] leading-[1.15] tracking-tight text-white">
+                                        <h3 className="max-w-[18ch] text-[1rem] leading-[1.15] tracking-tight text-white transition-transform duration-500 ease-out group-hover:-translate-y-1">
                                             {project.name}
                                         </h3>
                                         <div className="mt-[5px] flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.22em] text-white/62">
                                             <span>{project.category}</span>
                                         </div>
                                     </div>
+
+                                    <span className="absolute left-5 top-5 text-xs tabular-nums tracking-[0.2em] text-white/70 sm:left-6 sm:top-6">
+                                        {String(projectsData.indexOf(project) + 1).padStart(2, '0')}
+                                    </span>
+
+                                    <span
+                                        aria-hidden="true"
+                                        className="absolute right-4 top-4 scale-50 text-white opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 sm:right-5 sm:top-5"
+                                        style={{ '--arrow-ink': '#011627' }}
+                                    >
+                                        <span className="arrow-chip">
+                                            <ArrowGlyph />
+                                            <ArrowGlyph />
+                                        </span>
+                                    </span>
                                 </div>
+
+                                <span
+                                    aria-hidden="true"
+                                    className="tilt-spot pointer-events-none absolute inset-0 rounded-[1.75rem]"
+                                />
                             </CardTag>
+                            </Reveal>
                         );
                     })}
                 </div>

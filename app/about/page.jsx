@@ -1,16 +1,45 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { IntroVideo } from '../../components/IntroVideo';
 
 export const metadata = {
     title: 'About Hifza | Graphic Designer & Brand Identity Specialist'
 };
 
 const aboutMedia = {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
-    poster: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80',
-    alt: 'Placeholder hero media for the About page'
+    src: '/videos/hifza-intro.mp4',
+    poster: '/videos/hifza-intro-poster.jpg',
+    title: 'Hifza Khalid introduction'
 };
+
+// Drop a logo file into public/images/logos and set `logo` on the entry to replace the monogram.
+function BrandMark({ company, accent, logo }) {
+    if (logo) {
+        return (
+            <span className="relative mt-1 h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl border border-[#011627]/10 bg-white">
+                <Image src={logo} alt={`${company} logo`} fill sizes="48px" className="object-contain p-1.5" />
+            </span>
+        );
+    }
+
+    const initials = company
+        .split(' ')
+        .filter((word) => /^[A-Za-z]/.test(word))
+        .slice(0, 2)
+        .map((word) => word[0])
+        .join('')
+        .toUpperCase();
+
+    return (
+        <span
+            aria-hidden="true"
+            className="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-[#011627]/10 text-sm font-bold text-[#011627]"
+            style={{ backgroundColor: accent }}
+        >
+            {initials}
+        </span>
+    );
+}
 
 const experiences = [
     {
@@ -73,9 +102,15 @@ const skills = [
     'Figma'
 ];
 
+const funFacts = [
+    { emoji: '✏️', label: 'Sketching', story: 'Every idea starts as a rough sketch before it ever meets a screen.' },
+    { emoji: '🍵', label: 'Chai', story: 'Best creative decisions are made over a cup of chai.' },
+    { emoji: '🎧', label: 'New music', story: 'Always exploring new music while designing.' }
+];
+
 export default function Page() {
     return (
-        <main className="min-h-screen bg-[#f8f6f1] text-[#011627]">
+        <div className="min-h-screen bg-[#f8f6f1] text-[#011627]">
             <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-10 px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
                 <section className="space-y-6">
                     <div className="flex items-end gap-2">
@@ -85,34 +120,7 @@ export default function Page() {
                     </div>
 
                     <div className="overflow-hidden rounded-[1.6rem] border border-[#011627]/10 bg-white shadow-[0_18px_70px_rgba(1,22,39,0.12)]">
-                        <div className="relative aspect-[16/9] w-full bg-black">
-                            {aboutMedia.type === 'video' ? (
-                                <video
-                                    src={aboutMedia.src}
-                                    poster={aboutMedia.poster}
-                                    controls
-                                    className="h-full w-full object-cover"
-                                />
-                            ) : (
-                                <Image
-                                    src={aboutMedia.poster}
-                                    alt={aboutMedia.alt}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                            )}
-
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-                            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 text-sm text-white/78 sm:p-5">
-                                <div className="rounded-full border border-white/14 bg-black/35 px-3 py-1.5 backdrop-blur">
-                                    Video placeholder ready
-                                </div>
-                                <div className="rounded-full border border-white/14 bg-black/35 px-3 py-1.5 backdrop-blur">
-                                    Replace with your intro reel later
-                                </div>
-                            </div>
-                        </div>
+                        <IntroVideo src={aboutMedia.src} poster={aboutMedia.poster} title={aboutMedia.title} />
                     </div>
                 </section>
 
@@ -126,10 +134,7 @@ export default function Page() {
                                 >
                                     <summary className="grid cursor-pointer list-none items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto]">
                                         <div className="flex items-start gap-4">
-                                            <span
-                                                className="mt-1 h-10 w-10 flex-shrink-0 rounded-xl border border-[#011627]/10"
-                                                style={{ backgroundColor: exp.accent }}
-                                            />
+                                            <BrandMark company={exp.company} accent={exp.accent} logo={exp.logo} />
                                             <div className="min-w-0">
                                                 <h2 className="text-base font-semibold text-[#011627] sm:text-lg">
                                                     {exp.company}
@@ -196,10 +201,33 @@ export default function Page() {
                                 {skills.map((skill) => (
                                     <span
                                         key={skill}
-                                        className="rounded-full border border-[#011627]/10 px-3 py-1.5 text-sm text-[#011627]/72"
+                                        className="cursor-default rounded-full border border-[#011627]/10 px-3 py-1.5 text-sm text-[#011627]/72 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#047AE4] hover:bg-[#047AE4] hover:text-white"
                                     >
                                         {skill}
                                     </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="rounded-[1.5rem] border border-[#011627]/10 bg-white p-6 shadow-[0_12px_40px_rgba(1,22,39,0.06)]">
+                            <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#011627]/45">Off the clock</p>
+                            <p className="mt-2 text-sm text-[#011627]/50">Hover or tap a detail</p>
+                            <div className="mt-4 flex flex-wrap gap-2.5">
+                                {funFacts.map((fact) => (
+                                    <button
+                                        key={fact.label}
+                                        type="button"
+                                        className="group relative rounded-full border border-[#011627]/10 px-3 py-1.5 text-sm text-[#011627]/72 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E76F2E] hover:bg-[#E76F2E] hover:text-white focus-visible:-translate-y-0.5 focus-visible:border-[#E76F2E] focus-visible:bg-[#E76F2E] focus-visible:text-white"
+                                    >
+                                        <span aria-hidden="true">{fact.emoji} </span>
+                                        {fact.label}
+                                        <span
+                                            role="tooltip"
+                                            className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-max max-w-[16rem] -translate-x-1/2 translate-y-1 rounded-xl bg-[#011627] px-3 py-2 text-left text-xs leading-5 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100"
+                                        >
+                                            {fact.story}
+                                        </span>
+                                    </button>
                                 ))}
                             </div>
                         </div>
@@ -234,6 +262,6 @@ export default function Page() {
                     </aside>
                 </section>
             </div>
-        </main>
+        </div>
     );
 }

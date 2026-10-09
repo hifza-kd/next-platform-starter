@@ -1,0 +1,221 @@
+/* Shared micro-interactions: smooth scroll, reveal-on-scroll, text roll, arrow graphics, marquee. */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- text roll: label slides up, a copy slides in from below ---------- */
+.roll {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 1.25;
+    height: 1.25em;
+}
+
+.roll > span {
+    display: block;
+    transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.roll > span::after {
+    content: attr(data-text);
+    display: block;
+}
+
+.roll-host:hover .roll > span,
+.roll-host:focus-visible .roll > span {
+    transform: translateY(-50%);
+}
+
+/* ---------- arrow graphic: arrow exits top-right, a second one enters from bottom-left ---------- */
+.arrow-chip {
+    position: relative;
+    display: inline-flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: currentColor;
+    transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arrow-chip svg {
+    position: absolute;
+    color: var(--arrow-ink, #fff);
+    transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arrow-chip svg:last-child {
+    transform: translate(-150%, 150%);
+}
+
+.roll-host:hover .arrow-chip svg:first-child,
+.roll-host:focus-visible .arrow-chip svg:first-child {
+    transform: translate(150%, -150%);
+}
+
+.roll-host:hover .arrow-chip svg:last-child,
+.roll-host:focus-visible .arrow-chip svg:last-child {
+    transform: none;
+}
+
+/* small nudge arrow for prev/next buttons */
+.nudge-left:hover svg {
+    transform: translateX(-3px);
+}
+
+.nudge-right:hover svg {
+    transform: translateX(3px);
+}
+
+.nudge-left svg,
+.nudge-right svg {
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- scroll cue ---------- */
+@keyframes cue-bob {
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(8px);
+    }
+}
+
+.scroll-cue svg {
+    animation: cue-bob 1.8s ease-in-out infinite;
+}
+
+/* ---------- marquee ---------- */
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* ---------- header scroll progress ---------- */
+.scroll-progress {
+    transform-origin: 0 50%;
+    transform: scaleX(var(--scroll-progress, 0));
+}
+
+/* ---------- hover-lift cards ---------- */
+.lift {
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 50px -18px rgba(1, 22, 39, 0.28);
+}
+
+/* ---------- tilt cards (My Work) ---------- */
+.tilt-card {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 500ms ease;
+    will-change: transform;
+}
+
+.tilt-card:hover,
+.tilt-card:focus-visible {
+    --ty: -8px;
+}
+
+.tilt-spot {
+    opacity: 0;
+    transition: opacity 400ms ease;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.2), transparent 55%);
+}
+
+.tilt-card:hover .tilt-spot {
+    opacity: 1;
+}
+
+/* heading words rise in one after another */
+@keyframes word-rise {
+    from {
+        opacity: 0;
+        transform: translateY(0.7em) rotate(2deg);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.word-rise {
+    display: inline-block;
+    opacity: 0;
+    animation: word-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tilt-card {
+        transform: none;
+        transition: none;
+    }
+
+    .word-rise {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .marquee-track,
+    .scroll-cue svg {
+        animation: none;
+    }
+
+    .roll > span,
+    .arrow-chip svg,
+    .lift {
+        transition: none;
+    }
+}

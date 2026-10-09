@@ -1,4 +1,13 @@
 import { FeaturedProjectsCarousel } from '../components/FeaturedProjectsCarousel';
+import {
+    AboutTeaser,
+    ContactCta,
+    IntroStatement,
+    Process,
+    Services,
+    Stats,
+    ToolsMarquee
+} from '../components/HomeSections';
 import { InteractiveHero } from '../components/InteractiveHero';
 
 export const metadata = {
@@ -10,6 +19,13 @@ export default function Page() {
         <>
             <InteractiveHero />
             <FeaturedProjectsCarousel />
+            <IntroStatement />
+            <Services />
+            <Stats />
+            <Process />
+            <ToolsMarquee />
+            <AboutTeaser />
+            <ContactCta />
         </>
     );
 }

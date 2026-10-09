@@ -20,7 +20,7 @@ export function Footer() {
     };
 
     return (
-        <footer className="mt-auto bg-[#E76F2E] py-[58px] text-[#011627] sm:py-[74px]">
+        <footer id="contact" className="mt-auto scroll-mt-20bg-[#E76F2E] py-[58px] text-[#011627] sm:py-[74px]">
             <div className="grid w-full gap-10 px-6 sm:px-10 lg:grid-cols-3 lg:gap-12 lg:px-14">
                 <div className="space-y-4">
                     <p className="text-xs uppercase tracking-[0.28em] text-[#011627]/70">Email</p>

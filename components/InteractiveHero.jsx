@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { ArrowLink } from './ArrowLink';
 import { HeroScene } from './HeroScene';
 
 export function InteractiveHero() {
@@ -115,15 +116,29 @@ export function InteractiveHero() {
 
                         <div className="order-1 mx-auto w-full max-w-[22rem] px-4 text-center sm:max-w-[28rem] lg:order-2 lg:mx-0 lg:max-w-none lg:justify-self-start lg:-ml-10 lg:px-0 lg:pl-[200px] lg:text-left">
                             <h1 className="headline mx-auto max-w-[12ch] text-5xl font-bold sm:max-w-[13ch] sm:text-6xl lg:mx-0 lg:max-w-[10.5ch] lg:text-[4.35rem] xl:text-[4.65rem]">
-                                Hello
+                                Hello, I&apos;m Hifza
                             </h1>
-                            <button className="cta mt-6 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-blue-600">
-                                See How It Works
-                            </button>
+                            <p className="subtext mx-auto mt-5 max-w-[26rem] text-lg leading-8 text-[#011627]/70 lg:mx-0">
+                                A graphic designer and brand identity specialist from Lahore, turning rough ideas into
+                                visuals people remember.
+                            </p>
+                            <div className="cta mt-8 flex justify-center lg:justify-start">
+                                <ArrowLink href="#featured">See my work</ArrowLink>
+                            </div>
                         </div>
                     </div>
                 </section>
             </div>
+
+            <a
+                href="#featured"
+                className="scroll-cue absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-[0.65rem] uppercase tracking-[0.28em] text-[#011627]/55 no-underline sm:flex"
+            >
+                Scroll
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 5v14M6 13l6 6 6-6" />
+                </svg>
+            </a>
         </section>
     );
 }
