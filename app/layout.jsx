@@ -1,22 +1,45 @@
 import localFont from 'next/font/local';
 import '../styles/globals.css';
+import '../styles/interactions.css';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 
+const siteUrl = 'https://hifzakhalid.com';
+const siteTitle = 'Hifza Khalid | Graphic Designer & Brand Identity Specialist';
+const siteDescription =
+  'Portfolio of Hifza Khalid, a graphic designer and UX/UI enthusiast from Lahore, Pakistan, specialising in brand identity, product design and motion.';
+
 const notoSans = localFont({
-  src: '../public/fonts/Noto_Sans/static/NotoSans-Regular.ttf',
+  src: '../public/fonts/Noto_Sans/NotoSans-VariableFont_wdth,wght.ttf',
   variable: '--font-noto-sans',
+  weight: '100 900',
   display: 'swap',
 });
 
 const alanSans = localFont({
-  src: '../public/fonts/Alan_Sans/static/AlanSans-Bold.ttf',
+  src: '../public/fonts/Alan_Sans/AlanSans-VariableFont_wght.ttf',
   variable: '--font-alan-sans',
+  weight: '300 900',
   display: 'swap',
 });
 
 export const metadata = {
-  title: 'Hifza Khalid | Graphic Designer & Brand Identity Specialist',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'Hifza Khalid',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  twitter: {
+    card: 'summary',
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({ children }) {

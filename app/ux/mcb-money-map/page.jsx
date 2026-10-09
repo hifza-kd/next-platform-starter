@@ -20,10 +20,8 @@ export default function Page() {
     { id: "results", label: "Results" },
     { id: "reflection", label: "Reflection" },
     { id: "contact", label: "Contact" },
-    { id: "process", label: "Design Process" },
-{ id: "ui", label: "Final UI Screens" },
-{ id: "campaign", label: "Campaign System" },
-
+    { id: "ui", label: "Final UI Screens" },
+    { id: "campaign", label: "Campaign System" },
   ];
 
   const stats = [
@@ -34,14 +32,14 @@ export default function Page() {
   ];
 
   return (
-<main id="top" className="min-h-screen bg-white text-black">
+<div id="top" className="min-h-screen bg-white text-black">
 
       {/* ================= HEADER ================= */}
-      <header className="sticky top-0 z-50 bg-white border-b border-black/10">
+      <header className="sticky top-20 z-40 bg-white border-b border-black/10">
         <div className="mx-auto max-w-6xl px-6 h-[50px] flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="h-2.5 w-2.5 rounded-full bg-black" />
-            <h1 className="text-lg font-semibold">MCB Money Map</h1>
+            <p className="text-lg font-semibold">MCB Money Map</p>
           </div>
         </div>
       </header>
@@ -935,7 +933,7 @@ export default function Page() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 

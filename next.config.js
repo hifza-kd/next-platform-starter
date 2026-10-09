@@ -1,14 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
-  
-  // permit remote placeholder images used in AboutSection
+
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
-      },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
@@ -19,37 +14,9 @@ const nextConfig = {
   redirects() {
     return [
       {
-        source: '/docs',
-        destination: 'https://docs.netlify.com/frameworks/next-js/overview/',
-        permanent: false,
-      },
-      {
-        source: '/old-blog/:slug',
-        destination: '/classics',
-        permanent: true,
-      },
-      {
-        source: '/github',
-        destination: 'https://github.com/netlify-templates/next-platform-starter',
-        permanent: false,
-      },
-      {
         source: '/home',
         destination: '/',
         permanent: true,
-      },
-    ];
-  },
-  
-  rewrites() {
-    return [
-      {
-        source: '/api/health',
-        destination: '/quotes/random',
-      },
-      {
-        source: '/blog',
-        destination: '/classics',
       },
     ];
   },

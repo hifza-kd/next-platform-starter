@@ -5,13 +5,24 @@ export const metadata = {
     title: 'My Work | Hifza Khalid'
 };
 
+const headline = ['Selected', 'work'];
+
 export default function WorkPage() {
     return (
         <div className="page-shell flex flex-col gap-12 pb-20 sm:gap-16 sm:pb-28">
-            <section className="text-center">
-                <h1 className="mb-4">My Work</h1>
-                <p className="mx-auto max-w-2xl text-xl text-[#011627]/70">
-                    A selection of product, brand, and motion work presented as featured case-study cards. Hover previews are built to support either still imagery now or video later without changing the layout.
+            <section className="pt-6 text-center sm:pt-10">
+                <h1 className="mb-5 text-[clamp(3rem,8vw,7rem)] leading-none">
+                    {headline.map((word, index) => (
+                        <span key={word} className="word-rise mr-[0.25em] last:mr-0" style={{ '--i': index }}>
+                            {word}
+                        </span>
+                    ))}
+                </h1>
+                <p
+                    className="word-rise mx-auto max-w-2xl text-lg text-[#011627]/70 sm:text-xl"
+                    style={{ '--i': 4 }}
+                >
+                    Brand identities, product interfaces and campaign systems. Hover a card to preview it, click to dive in.
                 </p>
             </section>
 

@@ -83,6 +83,7 @@ function cardAtTap(tapX, position, total) {
 export function FeaturedProjectsCarousel() {
     const router = useRouter();
     const sectionRef = useRef(null);
+    const railRef = useRef(null);
     const positionRef = useRef(0);
     const targetRef = useRef(0);
     const dragRef = useRef(null);
@@ -149,6 +150,37 @@ export function FeaturedProjectsCarousel() {
         return () => {
             observer.disconnect();
             window.clearInterval(timer);
+        };
+    }, []);
+
+    // Sideways trackpad / shift-wheel scrolling moves the rail; vertical wheel still scrolls the page.
+    useEffect(() => {
+        const rail = railRef.current;
+
+        if (!rail) {
+            return undefined;
+        }
+
+        let settle;
+
+        const onWheel = (event) => {
+            if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+                return;
+            }
+
+            event.preventDefault();
+            targetRef.current += event.deltaX / (cardWidth() * 0.9);
+            window.clearTimeout(settle);
+            settle = window.setTimeout(() => {
+                targetRef.current = Math.round(targetRef.current);
+            }, 140);
+        };
+
+        rail.addEventListener('wheel', onWheel, { passive: false });
+
+        return () => {
+            rail.removeEventListener('wheel', onWheel);
+            window.clearTimeout(settle);
         };
     }, []);
 
@@ -270,10 +302,11 @@ export function FeaturedProjectsCarousel() {
 
             <h2 className="text-center text-[clamp(2.5rem,5.2vw,6.25rem)] leading-none tracking-tight">Featured Work</h2>
             <p className="mt-3 mb-8 text-center text-[clamp(0.625rem,0.78vw,0.95rem)] uppercase tracking-[0.14em] text-white/70 sm:mb-12">
-                Drag to browse, click a card to open it
+                Drag, swipe or scroll sideways to browse. Click a card to open it
             </p>
 
             <div
+                ref={railRef}
                 role="region"
                 aria-roledescription="carousel"
                 aria-label="Featured projects"
@@ -336,6 +369,32 @@ export function FeaturedProjectsCarousel() {
                 <span className="text-xs uppercase tracking-[0.14em] text-white/70">{active.category}</span>
                 <h3 className="text-[clamp(1.5rem,2.6vw,3rem)] leading-tight text-white">{active.name}</h3>
                 <span className="text-base text-white/75 sm:text-lg">{active.subtitle}</span>
+            </div>
+
+            <div className="mt-2 flex items-center justify-center gap-4 text-white">
+                <button
+                    type="button"
+                    aria-label="Previous project"
+                    onClick={() => goTo(Math.round(targetRef.current) - 1)}
+                    className="nudge-left inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/40 transition-colors hover:bg-white hover:text-[#047AE4]"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M19 12H5M11 6l-6 6 6 6" />
+                    </svg>
+                </button>
+                <span className="min-w-[4.5rem] text-center text-sm tabular-nums tracking-[0.14em] text-white/75">
+                    {String(activeIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                </span>
+                <button
+                    type="button"
+                    aria-label="Next project"
+                    onClick={() => goTo(Math.round(targetRef.current) + 1)}
+                    className="nudge-right inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/40 transition-colors hover:bg-white hover:text-[#047AE4]"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </button>
             </div>
         </section>
     );
