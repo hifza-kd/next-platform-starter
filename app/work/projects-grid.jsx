@@ -81,19 +81,10 @@ export function ProjectsGrid({ projectsData }) {
                                 onBlur={() => setHoveredProjectId(null)}
                                 onPointerMove={handleTilt}
                                 onPointerLeave={resetTilt}
-                                className="tilt-card roll-host group relative block w-full overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] text-left no-underline shadow-[0_18px_45px_rgba(0,0,0,0.18)] hover:opacity-100 hover:shadow-[0_34px_72px_rgba(0,0,0,0.3)] focus-visible:shadow-[0_34px_72px_rgba(0,0,0,0.3)]"
+                                className="tilt-card roll-host group relative block w-full text-left text-[#011627] no-underline hover:opacity-100"
                             >
-                                <div
-                                    className="relative aspect-[4/4.6] overflow-hidden rounded-[1.75rem]"
-                                    style={{
-                                        background: project.accent,
-                                        backgroundSize: project.accentSize ?? 'cover'
-                                    }}
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/72" />
-
-                                    <div className="absolute inset-x-[4.5%] top-[28%] overflow-hidden rounded-[1rem] border border-white/15 bg-white shadow-[0_10px_35px_rgba(0,0,0,0.22)]">
-                                        <div className="relative aspect-[16/10]">
+                                <div className="relative overflow-hidden rounded-[1.5rem] bg-[#ece9e2] shadow-[0_14px_36px_rgba(1,22,39,0.12)] transition-shadow duration-500 group-hover:shadow-[0_30px_60px_rgba(1,22,39,0.24)]">
+                                    <div className="relative aspect-[16/10]">
                                             <Image
                                                 src={project.thumbnail}
                                                 alt={project.name}
@@ -120,39 +111,34 @@ export function ProjectsGrid({ projectsData }) {
                                                 />
                                             ) : null}
 
-                                            <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/0 to-black/8" />
-                                        </div>
                                     </div>
 
-                                    <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
-                                        <h3 className="max-w-[18ch] text-[1rem] leading-[1.15] tracking-tight text-white transition-transform duration-500 ease-out group-hover:-translate-y-1">
-                                            {project.name}
-                                        </h3>
-                                        <div className="mt-[5px] flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.22em] text-white/62">
-                                            <span>{project.category}</span>
-                                        </div>
-                                    </div>
-
-                                    <span className="absolute left-5 top-5 text-xs tabular-nums tracking-[0.2em] text-white/70 sm:left-6 sm:top-6">
+                                    <span className="absolute left-4 top-4 rounded-full bg-white/85 px-2.5 py-1 text-xs tabular-nums tracking-[0.18em] text-[#011627] backdrop-blur">
                                         {String(projectsData.indexOf(project) + 1).padStart(2, '0')}
                                     </span>
 
                                     <span
                                         aria-hidden="true"
-                                        className="absolute right-4 top-4 scale-50 text-white opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 sm:right-5 sm:top-5"
-                                        style={{ '--arrow-ink': '#011627' }}
+                                        className="absolute right-3 top-3 scale-50 text-[#011627] opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 sm:right-4 sm:top-4"
+                                        style={{ '--arrow-ink': '#fff' }}
                                     >
                                         <span className="arrow-chip">
                                             <ArrowGlyph />
                                             <ArrowGlyph />
                                         </span>
                                     </span>
+
+                                    <span aria-hidden="true" className="tilt-spot pointer-events-none absolute inset-0" />
                                 </div>
 
-                                <span
-                                    aria-hidden="true"
-                                    className="tilt-spot pointer-events-none absolute inset-0 rounded-[1.75rem]"
-                                />
+                                <div className="px-1 pt-5">
+                                    <p className="text-[0.7rem] uppercase tracking-[0.22em] text-[#011627]/55">
+                                        {project.category} &middot; {project.year}
+                                    </p>
+                                    <h3 className="mt-2 text-xl leading-snug tracking-tight transition-colors duration-300 group-hover:text-[#047AE4]">
+                                        {project.name}
+                                    </h3>
+                                </div>
                             </CardTag>
                             </Reveal>
                         );
