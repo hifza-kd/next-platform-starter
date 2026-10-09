@@ -116,7 +116,18 @@ export function InteractiveHero() {
 
                         <div className="order-1 mx-auto w-full max-w-[22rem] px-4 text-center sm:max-w-[28rem] lg:order-2 lg:mx-0 lg:max-w-none lg:justify-self-start lg:-ml-10 lg:px-0 lg:pl-[200px] lg:text-left">
                             <h1 className="headline mx-auto max-w-[12ch] text-5xl font-bold sm:max-w-[13ch] sm:text-6xl lg:mx-0 lg:max-w-[10.5ch] lg:text-[4.35rem] xl:text-[4.65rem]">
-                                Hello, I&apos;m Hifza
+                                <span className="sr-only">Hello, I&apos;m Hifza</span>
+                                <span aria-hidden="true">Hello, I&apos;m </span>
+                                <span aria-hidden="true" className="name-wrap">
+                                    {'Hifza'.split('').map((letter, index) => (
+                                        <span key={index} className="name-letter" style={{ '--i': index }}>
+                                            {letter}
+                                        </span>
+                                    ))}
+                                    <svg className="name-underline" viewBox="0 0 220 18" preserveAspectRatio="none" fill="none">
+                                        <path d="M3 11 C 25 2, 45 2, 67 10 S 109 18, 131 9 S 175 2, 217 9" pathLength="1" />
+                                    </svg>
+                                </span>
                             </h1>
                             <p className="subtext mx-auto mt-5 max-w-[26rem] text-lg leading-8 text-[#011627]/70 lg:mx-0">
                                 A graphic designer and brand identity specialist from Lahore, turning rough ideas into
